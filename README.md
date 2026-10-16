@@ -6,6 +6,22 @@ Each skill is modular and self-contained following the Agent Skill specification
 
 ---
 
+## ⚡ Quick Install (One-Liner)
+
+Install any single skill with a single command (just like `brew`, `rustup`, or `bun`):
+
+```bash
+# Install to global agent skills directory (~/.agents/skills/<skill-name>)
+curl -fsSL https://raw.githubusercontent.com/chiencao/ai-skills/main/install.sh | bash -s <skill-name>
+
+# Or install into the current project repository (.agents/skills/<skill-name>)
+curl -fsSL https://raw.githubusercontent.com/chiencao/ai-skills/main/install.sh | bash -s <skill-name> .agents/skills
+```
+
+> **How it works under the hood**: It streams the GitHub tarball directly into `tar` to extract *only* the requested skill directory. No temporary clone, zero git history overhead, and instantaneous.
+
+---
+
 ## 📦 Available Skills
 
 | Skill | Description |
@@ -31,34 +47,18 @@ Each skill is modular and self-contained following the Agent Skill specification
 
 ---
 
-## ⚡ How to Download a Single Skill (Without Full Repo Clone)
+## 🛠️ Alternative Download Methods
 
-> **Why not `git clone https://.../skills/abc`?**  
-> Git tracks changes at the repository level (commit graphs and trees). Subdirectories do not exist as independent Git repositories, so Git URLs cannot directly clone a subpath.
-
-Choose either of the two standard solutions below:
-
-### Method 1: Using `npx degit` (Recommended — Fastest & Lightest)
-Downloads only the selected skill folder with zero Git overhead:
+### Option A: `npx giget` / `npx degit`
 ```bash
-# Download directly into global agent skills directory (~/.agents/skills)
-npx degit <username>/ai-skills/skills/<skill-name> ~/.agents/skills/<skill-name>
-
-# Or download into your current project (.agents/skills)
-npx degit <username>/ai-skills/skills/<skill-name> .agents/skills/<skill-name>
+npx giget gh:chiencao/ai-skills/skills/<skill-name> ~/.agents/skills/<skill-name>
 ```
 
-### Method 2: Using Native Git Sparse-Checkout (Zero External Dependencies)
-Uses native Git features (`--sparse` + blobless filter) to pull only the metadata and target directory:
+### Option B: Native Git Sparse-Checkout
 ```bash
-# 1. Blobless shallow clone
-git clone --depth 1 --filter=blob:none --sparse https://github.com/<username>/ai-skills.git /tmp/skill-temp
-
-# 2. Pull only the target skill directory
+git clone --depth 1 --filter=blob:none --sparse https://github.com/chiencao/ai-skills.git /tmp/skill-temp
 cd /tmp/skill-temp
 git sparse-checkout set skills/<skill-name>
-
-# 3. Move skill to destination and clean up
 mv skills/<skill-name> ~/.agents/skills/
 cd ~ && rm -rf /tmp/skill-temp
 ```
@@ -70,6 +70,7 @@ cd ~ && rm -rf /tmp/skill-temp
 ```text
 ai-skills/
 ├── README.md               # Catalog of skills and usage instructions
+├── install.sh              # One-liner single-skill installer
 ├── .gitignore              # Ignored cache & temporary files
 └── skills/                 # Skills container
     └── <skill-name>/
@@ -80,9 +81,9 @@ ai-skills/
 
 ---
 
-## 🛠️ Skill Specification (`SKILL.md`)
+## 📝 Skill Specification (`SKILL.md`)
 
-Each skill folder contains a `SKILL.md` file:
+Each skill directory contains a `SKILL.md` file:
 ```markdown
 ---
 name: <skill-name>
