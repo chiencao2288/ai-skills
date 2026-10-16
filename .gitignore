@@ -1,0 +1,17 @@
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Temporary & workspace files
+*-workspace/
+*.tmp
+*.log
+
+# Python cache (nếu trong skill có bundled scripts)
+__pycache__/
+*.pyc
+.venv/
+
+# Node cache (nếu có scripts JS/TS)
+node_modules/
+package-lock.json
