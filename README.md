@@ -12,10 +12,10 @@ Install any single skill with a single command (just like `brew`, `rustup`, or `
 
 ```bash
 # Install to global agent skills directory (~/.agents/skills/<skill-name>)
-curl -fsSL https://raw.githubusercontent.com/chiencao/ai-skills/main/install.sh | bash -s <skill-name>
+curl -fsSL https://raw.githubusercontent.com/chiencao2288/ai-skills/main/install.sh | bash -s <skill-name>
 
 # Or install into the current project repository (.agents/skills/<skill-name>)
-curl -fsSL https://raw.githubusercontent.com/chiencao/ai-skills/main/install.sh | bash -s <skill-name> .agents/skills
+curl -fsSL https://raw.githubusercontent.com/chiencao2288/ai-skills/main/install.sh | bash -s <skill-name> .agents/skills
 ```
 
 > **How it works under the hood**: It streams the GitHub tarball directly into `tar` to extract *only* the requested skill directory. No temporary clone, zero git history overhead, and instantaneous.

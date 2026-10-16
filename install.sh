@@ -7,15 +7,15 @@
 #
 # Examples:
 #   # Install to global agent skills directory (~/.agents/skills/pdf):
-#   curl -fsSL https://raw.githubusercontent.com/chiencao/ai-skills/main/install.sh | bash -s pdf
+#   curl -fsSL https://raw.githubusercontent.com/chiencao2288/ai-skills/main/install.sh | bash -s pdf
 #
 #   # Install into current project repository (.agents/skills/pdf):
-#   curl -fsSL https://raw.githubusercontent.com/chiencao/ai-skills/main/install.sh | bash -s pdf .agents/skills
+#   curl -fsSL https://raw.githubusercontent.com/chiencao2288/ai-skills/main/install.sh | bash -s pdf .agents/skills
 # ==============================================================================
 
 set -euo pipefail
 
-REPO_OWNER="${AI_SKILLS_OWNER:-chiencao}"
+REPO_OWNER="${AI_SKILLS_OWNER:-chiencao2288}"
 REPO_NAME="${AI_SKILLS_REPO:-ai-skills}"
 BRANCH="${AI_SKILLS_BRANCH:-main}"
 
