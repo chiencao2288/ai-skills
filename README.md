@@ -1,84 +1,95 @@
 # AI Skills Collection 🚀
 
-Kho lưu trữ các Agent Skills tùy chỉnh phục vụ cho AI coding assistants (Claude Code, Cline, Roo Code, Cursor, OpenCode, omp, ...).
+A curated collection of agent skills for AI coding assistants (Claude Code, Cursor, Cline, Roo Code, OpenCode, omp, etc.).
 
-Mỗi skill được đóng gói độc lập theo chuẩn Agent Skill (`SKILL.md`), có thể tải và sử dụng riêng lẻ từng skill mà không cần tải toàn bộ repository.
-
----
-
-## 📦 Danh sách Skills
-
-| Tên Skill | Mô tả | Lệnh cài nhanh |
-| :--- | :--- | :--- |
-| [`example-skill`](skills/example-skill/) | Skill mẫu hướng dẫn cấu trúc chuẩn | `npx degit <username>/ai-skills/skills/example-skill ~/.agents/skills/example-skill` |
+Each skill is modular and self-contained following the Agent Skill specification (`SKILL.md`), allowing you to download and use individual skills without pulling the entire repository.
 
 ---
 
-## ⚡ Cách tải lẻ 1 Skill về máy (Không clone cả repo)
+## 📦 Available Skills
 
-Bạn **không cần clone toàn bộ repo**. Chọn 1 trong các cách sau tùy theo công cụ có sẵn:
+| Skill | Description |
+| :--- | :--- |
+| [`agent-notes`](skills/agent-notes/) | Use when recording, updating, auditing, pruning, or reviewing an Agent Note (durable RFC/ADR decision record). |
+| [`brainstorming`](skills/brainstorming/) | Explore ideas, create feature specifications, visual companions, and design reviews. |
+| [`codebase-design`](skills/codebase-design/) | Design deep modules, clean seams, and improve interface testability. |
+| [`docx`](skills/docx/) | Create, read, edit, or manipulate Word documents (`.docx`, `.dotx`). |
+| [`frontend-design`](skills/frontend-design/) | Distinctive UI design, aesthetic direction, typography, and purposeful layouts. |
+| [`grill-me`](skills/grill-me/) | Relentless interview process to stress-test and sharpen a plan or design. |
+| [`grilling`](skills/grilling/) | Stress-test decisions, ideas, and architecture through targeted counter-arguments. |
+| [`guarding-agent-work`](skills/guarding-agent-work/) | Pre-flight and guardrail checks before and during non-trivial code/test changes. |
+| [`improve-codebase-architecture`](skills/improve-codebase-architecture/) | Scan codebases for deepening opportunities and visual HTML architectural reports. |
+| [`orca-cli`](skills/orca-cli/) | Operate Orca-managed worktrees, folder contexts, terminals, and automations. |
+| [`orca-per-workspace-env`](skills/orca-per-workspace-env/) | Set up, debug, or validate on-demand per-workspace container runtimes. |
+| [`orchestration`](skills/orchestration/) | Coordinate supervised Orca workers: message dispatch, barriers, and multi-agent flow. |
+| [`pdf`](skills/pdf/) | Extract, OCR, merge, split, fill forms, or generate PDF files. |
+| [`pptx`](skills/pptx/) | Create, inspect, edit, or manipulate PowerPoint presentations (`.pptx`, `.potx`). |
+| [`skill-creator`](skills/skill-creator/) | Create new skills, benchmark evals, and optimize descriptions. |
+| [`systematic-debugging`](skills/systematic-debugging/) | Methodical root-cause investigation for bugs and test failures before proposing fixes. |
+| [`test-driven-development`](skills/test-driven-development/) | TDD workflow: write failing tests first, make them pass, then refactor cleanly. |
+| [`use-this-skills`](skills/use-this-skills/) | Transparently report and link skills consulted during execution. |
 
-### Cách 1: Dùng `npx degit` (Nhanh & nhẹ nhất - Khuyên dùng)
-Không tải lịch sử Git, chỉ tải đúng thư mục của skill:
+---
+
+## ⚡ How to Download a Single Skill (Without Full Repo Clone)
+
+> **Why not `git clone https://.../skills/abc`?**  
+> Git tracks changes at the repository level (commit graphs and trees). Subdirectories do not exist as independent Git repositories, so Git URLs cannot directly clone a subpath.
+
+Choose either of the two standard solutions below:
+
+### Method 1: Using `npx degit` (Recommended — Fastest & Lightest)
+Downloads only the selected skill folder with zero Git overhead:
 ```bash
-# Cài đặt vào thư mục global của agent (~/.agents/skills)
-npx degit <username>/ai-skills/skills/<ten-skill> ~/.agents/skills/<ten-skill>
+# Download directly into global agent skills directory (~/.agents/skills)
+npx degit <username>/ai-skills/skills/<skill-name> ~/.agents/skills/<skill-name>
 
-# Hoặc cài đặt vào thư mục project hiện tại
-npx degit <username>/ai-skills/skills/<ten-skill> .agents/skills/<ten-skill>
+# Or download into your current project (.agents/skills)
+npx degit <username>/ai-skills/skills/<skill-name> .agents/skills/<skill-name>
 ```
 
-### Cách 2: Dùng Git Sparse-Checkout (Không cần cài thêm gì)
-Chỉ tải metadata và đúng thư mục skill bạn muốn:
+### Method 2: Using Native Git Sparse-Checkout (Zero External Dependencies)
+Uses native Git features (`--sparse` + blobless filter) to pull only the metadata and target directory:
 ```bash
-# 1. Clone không tải nội dung file (blobless)
-git clone --depth 1 --filter=blob:none --sparse https://github.com/<username>/ai-skills.git /tmp/ai-skills-temp
+# 1. Blobless shallow clone
+git clone --depth 1 --filter=blob:none --sparse https://github.com/<username>/ai-skills.git /tmp/skill-temp
 
-# 2. Chỉ chọn thư mục skill cần lấy
-cd /tmp/ai-skills-temp
-git sparse-checkout set skills/<ten-skill>
+# 2. Pull only the target skill directory
+cd /tmp/skill-temp
+git sparse-checkout set skills/<skill-name>
 
-# 3. Di chuyển skill vào thư mục mong muốn và dọn dẹp
-mv skills/<ten-skill> ~/.agents/skills/
-cd ~ && rm -rf /tmp/ai-skills-temp
-```
-
-### Cách 3: Dùng Script `install.sh` đi kèm
-Chạy trực tiếp từ terminal qua `curl`:
-```bash
-curl -fsSL https://raw.githubusercontent.com/<username>/ai-skills/main/install.sh | bash -s <ten-skill>
+# 3. Move skill to destination and clean up
+mv skills/<skill-name> ~/.agents/skills/
+cd ~ && rm -rf /tmp/skill-temp
 ```
 
 ---
 
-## 📁 Cấu trúc thư mục Repo
+## 📁 Repository Layout
 
 ```text
 ai-skills/
-├── README.md               # Catalog danh sách các skills & hướng dẫn
-├── install.sh              # Script hỗ trợ tải lẻ 1 skill
-├── .gitignore
-└── skills/                 # Chứa tất cả các skills
-    ├── <ten-skill-1>/
-    │   ├── SKILL.md        # File bắt buộc: YAML metadata + Prompt hướng dẫn
-    │   ├── scripts/        # (Tùy chọn) Scripts thực thi deterministic
-    │   └── references/     # (Tùy chọn) Tài liệu tham khảo tra cứu
-    └── <ten-skill-2>/
-        └── SKILL.md
+├── README.md               # Catalog of skills and usage instructions
+├── .gitignore              # Ignored cache & temporary files
+└── skills/                 # Skills container
+    └── <skill-name>/
+        ├── SKILL.md        # Required: YAML frontmatter + prompt instructions
+        ├── scripts/        # Optional: Helper scripts (Python/Node/Bash)
+        └── references/     # Optional: Reference documents / manuals
 ```
 
 ---
 
-## 🛠️ Quy chuẩn viết một Skill (`SKILL.md`)
+## 🛠️ Skill Specification (`SKILL.md`)
 
-Mỗi skill nằm trong một thư mục riêng dưới `skills/` và bắt buộc có file `SKILL.md`:
+Each skill folder contains a `SKILL.md` file:
 ```markdown
 ---
-name: my-awesome-skill
-description: Mô tả rõ ràng skill này làm gì và KHI NÀO agent nên tự động kích hoạt skill này.
+name: <skill-name>
+description: Clear summary of what the skill does AND exact scenarios when it should trigger.
 ---
 
-# Tên Skill
+# Skill Title
 
-Hướng dẫn chi tiết từng bước cho AI Agent...
+Step-by-step instructions and workflows for the AI agent...
 ```

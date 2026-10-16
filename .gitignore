@@ -7,11 +7,11 @@ Thumbs.db
 *.tmp
 *.log
 
-# Python cache (nếu trong skill có bundled scripts)
+# Python cache & virtual environments
 __pycache__/
 *.pyc
 .venv/
 
-# Node cache (nếu có scripts JS/TS)
+# Node cache & dependencies
 node_modules/
 package-lock.json
