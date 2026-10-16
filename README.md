@@ -46,25 +46,6 @@ curl -fsSL https://raw.githubusercontent.com/chiencao/ai-skills/main/install.sh 
 | [`use-this-skills`](skills/use-this-skills/) | Transparently report and link skills consulted during execution. |
 
 ---
-
-## 🛠️ Alternative Download Methods
-
-### Option A: `npx giget` / `npx degit`
-```bash
-npx giget gh:chiencao/ai-skills/skills/<skill-name> ~/.agents/skills/<skill-name>
-```
-
-### Option B: Native Git Sparse-Checkout
-```bash
-git clone --depth 1 --filter=blob:none --sparse https://github.com/chiencao/ai-skills.git /tmp/skill-temp
-cd /tmp/skill-temp
-git sparse-checkout set skills/<skill-name>
-mv skills/<skill-name> ~/.agents/skills/
-cd ~ && rm -rf /tmp/skill-temp
-```
-
----
-
 ## 📁 Repository Layout
 
 ```text
