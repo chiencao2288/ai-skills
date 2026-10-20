@@ -1,6 +1,6 @@
 ---
 name: agent-notes
-description: Use when recording, updating, auditing, pruning, or reviewing an Agent Note — a durable RFC/ADR decision record under .agents/notes/<project-name>/ for monorepo microservices. Covers project scoping, the flat lifecycle (proposed/active/rejected), prefix-based classification (feat, arch, fix, sec, infra), mandatory skeletons, alternatives mandate, and supersession rules.
+description: Use when recording, updating, auditing, pruning, or reviewing an Agent Note — a durable RFC/ADR decision record under <repo-root>/.agents/notes/. Covers repo root resolution, project scoping, flat lifecycle (proposed/deferred/active/rejected), standard prefixes, and supersession.
 ---
 
 # Agent Notes for Monorepo & Microservices
@@ -11,34 +11,39 @@ Agent Notes are durable RFCs/ADRs written by agents: rationale, alternatives, co
 
 ---
 
-## 1. Directory Structure (Project Namespaces)
+## 1. Root Resolution & Directory Structure
 
-Notes are organized by microservice/project namespace under `.agents/notes/`. A special `_global` namespace is reserved for cross-cutting monorepo decisions (shared protocols, message broker standards, root CI/CD, gateway routing).
+### ⚠️ Mandatory: Always Write to Repository Root (`<repo-root>/.agents/notes/`)
+Agent notes MUST always be stored at the repository root, never in child folders or relative to arbitrary working directories:
+1. **Resolve Root First**: Always determine the top-level repository root via `git rev-parse --show-toplevel` (or project root containing `.git`).
+2. **Absolute / Root Anchor**: Anchor all file reads and writes at `<repo-root>/.agents/notes/`.
+3. **No Subdirectory Fragmentation**: If you are working inside a subfolder (such as `apps/web`, `packages/shared`, `backend/`, or `rn/`), **NEVER** create a local `.agents/` inside that subfolder. Always write to the top-level root `.agents/notes/`.
 
 ```
-.agents/notes/
+<repo-root>/.agents/notes/
 ├── _global/                     # Monorepo-wide & shared platform decisions
 │   ├── proposed/
 │   ├── deferred/                # Approved, but postponed for future releases/milestones
 │   ├── active/
 │   └── rejected/
-├── <project-a>/                 # Microservice A (e.g. auth-services)
+├── <project-a>/                 # Microservice / Subproject A (e.g. auth-services)
 │   ├── proposed/
 │   ├── deferred/
 │   ├── active/
 │   └── rejected/
-└── <project-b>/                 # Microservice B (e.g. channel-rpc-rust)
+└── <project-b>/                 # Microservice / Subproject B (e.g. channel-rpc-rust)
     ├── proposed/
     ├── deferred/
     ├── active/
     └── rejected/
 ```
 
-### Determining the Target Project
-Before creating or updating a note, identify its scope:
-- **Service-specific**: If the decision affects only one microservice (e.g. internal database schema, business logic, framework choice inside that service), place it under `.agents/notes/<service-folder-name>/`.
-- **Cross-cutting / Global**: If the decision affects inter-service communication (gRPC, message broker schemas), shared libraries, deployment topology, or monorepo build tools, place it under `.agents/notes/_global/`.
+*(Note: In single-project repositories without microservices, notes may reside directly under `<repo-root>/.agents/notes/_global/` or `<repo-root>/.agents/notes/`)*
 
+### Determining the Target Scope
+Before creating or updating a note, identify its scope under the root:
+- **Service-specific**: If the decision affects only one microservice or package, place it under `<repo-root>/.agents/notes/<service-folder-name>/`.
+- **Cross-cutting / Global**: If the decision affects inter-service communication (gRPC, message broker schemas), shared libraries, deployment topology, or monorepo build tools, place it under `<repo-root>/.agents/notes/_global/`.
 ---
 
 ## 2. Flat Lifecycle: "The Location is the Status"
@@ -53,7 +58,7 @@ Each project directory contains at most four flat lifecycle folders. Never nest 
 | `rejected/` | `Status: rejected — <reason>` | Evaluated and declined. Kept to prevent re-litigating bad ideas in future sessions. |
 When a proposal is implemented, move it via `git mv`:
 ```bash
-git mv .agents/notes/<project>/proposed/<file>.md .agents/notes/<project>/active/<file>.md
+git mv $(git rev-parse --show-toplevel)/.agents/notes/<project>/proposed/<file>.md $(git rev-parse --show-toplevel)/.agents/notes/<project>/active/<file>.md
 ```
 Update line 3 (`Status: active`) and rewrite the body to present-tense reality in the same commit.
 
@@ -76,9 +81,9 @@ Files inside lifecycle folders follow a flat, self-sorting naming scheme:
 * **`rfc_`** (*Request for Comments*): Open design discussions or cross-team proposals.
 
 ### Examples
-- `.agents/notes/auth-services/active/sec_2026-10-08_jwt-rs256-revocation.md`
-- `.agents/notes/auth-services/proposed/feat_2026-10-10_telegram-otp-login.md`
-- `.agents/notes/_global/active/arch_2026-10-09_grpc-channel-protocol.md`
+- `<repo-root>/.agents/notes/auth-services/active/sec_2026-10-08_jwt-rs256-revocation.md`
+- `<repo-root>/.agents/notes/auth-services/proposed/feat_2026-10-10_telegram-otp-login.md`
+- `<repo-root>/.agents/notes/_global/active/arch_2026-10-09_grpc-channel-protocol.md`
 
 ---
 
