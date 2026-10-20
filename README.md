@@ -46,7 +46,7 @@ curl -fsSL https://raw.githubusercontent.com/chiencao2288/ai-skills/main/install
 | [`skill-creator`](skills/skill-creator/) | Create new skills, benchmark evals, and optimize descriptions. |
 | [`systematic-debugging`](skills/systematic-debugging/) | Methodical root-cause investigation for bugs and test failures before proposing fixes. |
 | [`test-driven-development`](skills/test-driven-development/) | TDD workflow: write failing tests first, make them pass, then refactor cleanly. |
-| [`use-this-skills`](skills/use-this-skills/) | Transparently report and link skills consulted during execution. |
+| [`report-used-skills`](skills/report-used-skills/) | Transparently report and link skills consulted during execution. |
 
 ---
 

@@ -1,9 +1,9 @@
 ---
-name: use-this-skills
+name: report-used-skills
 description: Report and list all skills used, consulted, or referenced during this turn. Use whenever any skill is applied, when completing a task, or when the user asks about skill usage, to append a clear, transparent "Skills Used" footer at the end of the response.
 ---
 
-# Skill Usage Reporter (`use-this-skills`)
+# Skill Usage Reporter (`report-used-skills`)
 
 Use this skill to provide transparency by reporting which skills were consulted, executed, or referenced during the conversation turn.
 
