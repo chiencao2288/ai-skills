@@ -1,8 +1,6 @@
 ---
 name: self-improving-agent
-description: "Captures and maintains learnings, errors, and corrections. Use when a command fails, the user corrects an assumption, a capability is missing, knowledge is outdated, or a better approach is found. Review relevant saved guidance before major tasks, reuse, and promotion; revalidate it according to what could change and how quickly."
-version: "4.0.2"
-metadata:
+description: Continuous learning and error reflection across sessions. Use when commands fail, assumptions are corrected, or to capture insights, errors, and feature requests in .learnings/.
 ---
 
 # Self-Improvement Skill
