@@ -28,11 +28,10 @@ curl -fsSL https://raw.githubusercontent.com/chiencao2288/ai-skills/main/install
 
 ---
 
-## 📦 Available Skills (21)
+## 📦 Available Skills (17)
 
 | Skill | Description |
 | :--- | :--- |
-| [`agent-browser`](skills/agent-browser/) | Fast browser automation CLI for AI agents (Chrome/Chromium via CDP, accessibility-tree, screenshot, testing). |
 | [`agent-notes`](skills/agent-notes/) | Use when recording, updating, auditing, pruning, or reviewing an Agent Note (durable RFC/ADR decision record). |
 | [`brainstorming`](skills/brainstorming/) | Explore ideas, create feature specifications, visual companions, and design reviews. |
 | [`codebase-design`](skills/codebase-design/) | Design deep modules, clean seams, and improve interface testability. |
@@ -46,30 +45,24 @@ curl -fsSL https://raw.githubusercontent.com/chiencao2288/ai-skills/main/install
 | [`orchestration`](skills/orchestration/) | Coordinate supervised Orca workers: message dispatch, barriers, and multi-agent flow. |
 | [`pdf`](skills/pdf/) | Extract, OCR, merge, split, fill forms, or generate PDF files. |
 | [`pptx`](skills/pptx/) | Create, inspect, edit, or manipulate PowerPoint presentations (`.pptx`, `.potx`). |
-| [`self-improving-agent`](skills/self-improving-agent/) | Continuous learning, error logging, and post-mortem reflection across sessions (`.learnings/`). |
 | [`skill-creator`](skills/skill-creator/) | Create new skills, benchmark evals, and optimize descriptions. |
 | [`systematic-debugging`](skills/systematic-debugging/) | Methodical root-cause investigation for bugs and test failures before proposing fixes. |
-| [`taste-skill`](skills/taste-skill/) | Anti-slop frontend art direction, high-taste visual layout, and browser critique. |
 | [`test-driven-development`](skills/test-driven-development/) | TDD workflow: write failing tests first, make them pass, then refactor cleanly. |
 | [`use-this-skills`](skills/use-this-skills/) | Transparently report and link skills consulted during execution. |
-| [`xlsx`](skills/xlsx/) | Create, edit, recalculate, and analyze Excel spreadsheets (`.xlsx`, `.xlsm`). |
 
 ---
 
 ## 🛠️ Environment & Prerequisites
 
-Some skills include optional Python or Node scripts for advanced tasks (e.g. document validation, form filling, formula recalculation, or taste inspections).
+Some skills include optional Python scripts for advanced document validation and form filling (`docx`, `pptx`, `pdf`, `skill-creator`):
 
-### Python Dependencies
-For skills dealing with documents (`docx`, `pptx`, `xlsx`, `pdf`, `skill-creator`):
 ```bash
 pip install -r requirements.txt
 ```
 
 ### System Tools (Optional)
-- **LibreOffice (`soffice`)**: Required for recalculating Excel formulas (`xlsx`) and validating OpenXML documents (`docx`, `pptx`).
-- **Poppler Utilities (`pdftoppm`)**: Required for converting PDF pages to images (`pdf`).
-- **Node.js 22+ & Chrome/Chromium**: Required for `taste-skill` and `agent-browser`.
+- **LibreOffice (`soffice`)**: For validating OpenXML documents (`docx`, `pptx`).
+- **Poppler Utilities (`pdftoppm`)**: For converting PDF pages to images (`pdf`).
 
 ---
 
