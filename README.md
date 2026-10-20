@@ -28,14 +28,13 @@ curl -fsSL https://raw.githubusercontent.com/chiencao2288/ai-skills/main/install
 
 ---
 
-## 📦 Available Skills (17)
+## 📦 Available Skills (15)
 
 | Skill | Description |
 | :--- | :--- |
 | [`agent-notes`](skills/agent-notes/) | Use when recording, updating, auditing, pruning, or reviewing an Agent Note (durable RFC/ADR decision record). |
 | [`brainstorming`](skills/brainstorming/) | Explore ideas, create feature specifications, visual companions, and design reviews. |
 | [`codebase-design`](skills/codebase-design/) | Design deep modules, clean seams, and improve interface testability. |
-| [`docx`](skills/docx/) | Create, read, edit, or manipulate Word documents (`.docx`, `.dotx`). |
 | [`frontend-design`](skills/frontend-design/) | Distinctive UI design, aesthetic direction, typography, and purposeful layouts. |
 | [`grilling`](skills/grilling/) | Stress-test decisions, ideas, and architecture through targeted counter-arguments & relentless interviews (includes `grill-me`). |
 | [`guarding-agent-work`](skills/guarding-agent-work/) | Pre-flight and guardrail checks before and during non-trivial code/test changes. |
@@ -44,7 +43,6 @@ curl -fsSL https://raw.githubusercontent.com/chiencao2288/ai-skills/main/install
 | [`orca-per-workspace-env`](skills/orca-per-workspace-env/) | Set up, debug, or validate on-demand per-workspace container runtimes. |
 | [`orchestration`](skills/orchestration/) | Coordinate supervised Orca workers: message dispatch, barriers, and multi-agent flow. |
 | [`pdf`](skills/pdf/) | Extract, OCR, merge, split, fill forms, or generate PDF files. |
-| [`pptx`](skills/pptx/) | Create, inspect, edit, or manipulate PowerPoint presentations (`.pptx`, `.potx`). |
 | [`skill-creator`](skills/skill-creator/) | Create new skills, benchmark evals, and optimize descriptions. |
 | [`systematic-debugging`](skills/systematic-debugging/) | Methodical root-cause investigation for bugs and test failures before proposing fixes. |
 | [`test-driven-development`](skills/test-driven-development/) | TDD workflow: write failing tests first, make them pass, then refactor cleanly. |
@@ -54,15 +52,14 @@ curl -fsSL https://raw.githubusercontent.com/chiencao2288/ai-skills/main/install
 
 ## 🛠️ Environment & Prerequisites
 
-Some skills include optional Python scripts for advanced document validation and form filling (`docx`, `pptx`, `pdf`, `skill-creator`):
+Some skills include optional Python scripts for PDF manipulation and skill creation (`pdf`, `skill-creator`):
 
 ```bash
 pip install -r requirements.txt
 ```
 
 ### System Tools (Optional)
-- **LibreOffice (`soffice`)**: For validating OpenXML documents (`docx`, `pptx`).
-- **Poppler Utilities (`pdftoppm`)**: For converting PDF pages to images (`pdf`).
+- **Poppler Utilities (`pdftoppm`)**: Required for converting PDF pages to images (`pdf`).
 
 ---
 
@@ -72,7 +69,7 @@ pip install -r requirements.txt
 ai-skills/
 ├── README.md               # Catalog of skills and usage instructions
 ├── install.sh              # One-liner single/all skill installer & lister
-├── requirements.txt        # Python dependencies for office and PDF scripts
+├── requirements.txt        # Python dependencies for PDF & skill tooling
 ├── .gitignore              # Ignored cache & temporary files
 └── skills/                 # Skills container
     └── <skill-name>/

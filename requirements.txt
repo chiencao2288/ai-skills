@@ -1,11 +1,4 @@
-# Core document & data processing dependencies for AI skills
-# (Used by docx, pptx, pdf, and skill-creator)
-
-# XML & Office validation
-defusedxml>=0.7.1
-lxml>=5.0.0
-python-docx>=1.1.0
-python-pptx>=0.6.23
+# Python dependencies for AI skills (used by pdf and skill-creator)
 
 # PDF extraction & manipulation
 pypdf>=4.0.0
