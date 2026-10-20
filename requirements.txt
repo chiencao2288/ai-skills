@@ -1,0 +1,23 @@
+# Core document & data processing dependencies for AI skills
+# (Used by docx, pptx, xlsx, pdf, and skill-creator)
+
+# XML & Office validation
+defusedxml>=0.7.1
+lxml>=5.0.0
+openpyxl>=3.1.2
+python-docx>=1.1.0
+python-pptx>=0.6.23
+pandas>=2.0.0
+
+# PDF extraction & manipulation
+pypdf>=4.0.0
+pdfplumber>=0.10.0
+pdf2image>=1.17.0
+reportlab>=4.0.0
+
+# Images & Rendering
+Pillow>=10.0.0
+
+# Skill tooling & evaluation
+pyyaml>=6.0.1
+markitdown>=0.0.1; extra == 'full'
